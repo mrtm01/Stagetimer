@@ -82,6 +82,8 @@ SDL_Window *TimeDisplay::GetWindow()
     return window;
 }
 
+/*TODO: skapa en struct eller calls med Texture, width, height, x, y. Typ "RenderElement" eller så. */
+
 SDL_Texture *TimeDisplay::getTTFTextureFromInt(int number)
 {
     std::string message = SecondsToString(number);
