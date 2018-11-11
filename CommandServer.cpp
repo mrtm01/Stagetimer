@@ -46,7 +46,7 @@ void CommandServer::Listen()
     listening = true;
     while (listening)
     {
-        int ready_to_connect = SDLNet_CheckSockets(socketSet, serverWaitTimeout);
+        SDLNet_CheckSockets(socketSet, serverWaitTimeout);
         if (SDLNet_SocketReady(serverSocket))
         {
             if (busy)
