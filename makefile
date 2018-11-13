@@ -1,6 +1,6 @@
 #http://retis.sssup.it/~luca/makefiles.pdf
 #OBJS specifies which files to compile as part of the project
-OBJS = StageTimer.o TimeDisplay.o Timer.o CommandServer.o CommandHandeler.o
+OBJS = StageTimer.o TimeDisplay.o Timer.o CommandServer.o CommandHandeler.o IPConverter.o
 
 #CC specifies which compiler we're using
 CC = g++
