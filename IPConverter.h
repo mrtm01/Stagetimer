@@ -2,10 +2,6 @@
 #include <SDL2/SDL.h>
 #include <string>
 
-union IPBytes {
-    Uint32 wholeIP;
-    Uint8 bytes[4];         
-};
 
 class IPConverter
 {
@@ -13,6 +9,10 @@ class IPConverter
         static void PrintIP(Uint32 ip);
         static std::string IPToString(Uint32 ip);
     private:
+        union IPBytes {
+            Uint32 wholeIP;
+            Uint8 bytes[4];         
+        };
 
 
 };
