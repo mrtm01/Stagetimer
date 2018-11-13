@@ -30,7 +30,7 @@ void CommandServer::SetupServerSocket()
         exit(1);
     }
     SDLNet_ResolveHost(&serverIP, NULL, serverPort);
-    std::cout << "Server IP: " << IPConverter::IPToString(serverIP.host) << std::endl;
+    std::cout << "Server IP: " << IPConverter::IPToString(serverIP.host) << ":" << serverPort << std::endl;
     serverSocket = SDLNet_TCP_Open(&serverIP);
     if (serverSocket == NULL)
     {

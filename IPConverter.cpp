@@ -14,9 +14,12 @@ std::string IPConverter::IPToString(Uint32 ip)
     IPBytes ipbytes;
     ipbytes.wholeIP = ip;
     std::string retString = std::to_string((int)ipbytes.bytes[0]);
+    retString+=".";
     retString += std::to_string((int)ipbytes.bytes[1]);
+    retString+=".";
     retString += std::to_string((int)ipbytes.bytes[2]);
+    retString+=".";
     retString += std::to_string((int)ipbytes.bytes[3]);
-    
+
     return retString;
 }
