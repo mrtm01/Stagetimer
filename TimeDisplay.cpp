@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <string>
+#include "Utility.h"
 
 TimeDisplay::TimeDisplay()
 {
@@ -55,7 +56,7 @@ void TimeDisplay::RenderString(std::string string)
 void TimeDisplay::ClearScreen()
 {
     SDL_SetRenderDrawColor(renderer, bgColor.r, bgColor.g, bgColor.b, bgColor.a);
-    SDL_RenderClear(renderer);   
+    SDL_RenderClear(renderer);
 }
 void TimeDisplay::Render()
 {
@@ -107,24 +108,20 @@ SDL_Texture *TimeDisplay::getTTFTextureFromInt(int number)
 std::string TimeDisplay::SecondsToString(int totalSeconds)
 {
     std::string retString;
-    if (totalSeconds > 0)
+    bool lessThanZero = false;
+    if (totalSeconds < 0)
     {
-        int hours = totalSeconds / (60 * 60);
-        int minutes = (totalSeconds - hours * 60 * 60) / 60;
-        int seconds = totalSeconds - (hours * 60 * 60) - (minutes * 60);
-        if (std::to_string(hours).length() == 1)
-            retString += "0";
-        retString += std::to_string(hours);
-        retString += ":";
-        if (std::to_string(minutes).length() == 1)
-            retString += "0";
-        retString += std::to_string(minutes);
-        retString += ":";
-        if (std::to_string(seconds).length() == 1)
-            retString += "0";
-        retString += std::to_string(seconds);
+        lessThanZero = true;
+        totalSeconds = totalSeconds * -1;
     }
-    else
-        retString = "00:00:00";
+    int hours = totalSeconds / (60 * 60);
+    int minutes = (totalSeconds - hours * 60 * 60) / 60;
+    int seconds = totalSeconds - (hours * 60 * 60) - (minutes * 60);
+
+    retString = Utility::PadToTwo(std::to_string(hours)) +
+                ":" + Utility::PadToTwo(std::to_string(minutes)) +
+                ":" + Utility::PadToTwo(std::to_string(seconds));
+    if (lessThanZero)
+        retString = std::string(overtimePrefix) + retString;
     return retString;
 }

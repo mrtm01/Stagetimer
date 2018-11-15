@@ -3,11 +3,12 @@
 #include <string>
 
 
-class IPConverter
+class Utility
 {
     public:
         static void PrintIP(Uint32 ip);
         static std::string IPToString(Uint32 ip);
+        static std::string PadToTwo(std::string input);
     private:
         union IPBytes {
             Uint32 wholeIP;

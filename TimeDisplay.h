@@ -19,11 +19,13 @@ class TimeDisplay
     std::string SecondsToString(int totalSeconds);
     void ClearScreen();
     void Render();
+    const char *overtimePrefix = "-";    
 
     SDL_Window *window;
     SDL_Renderer *renderer;
     int windowWidth, windowHeight;
     const char *WINDOW_TITLE = "TimeDisplay";
+
 
     TTF_Font *font;
     const int fontSize = 400;

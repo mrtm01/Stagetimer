@@ -3,7 +3,7 @@
 #include <string>
 #include <SDL2/SDL_net.h>
 #include <thread>
-#include "IPConverter.h"
+#include "Utility.h"
 
 CommandServer::CommandServer()
 {
@@ -30,7 +30,7 @@ void CommandServer::SetupServerSocket()
         exit(1);
     }
     SDLNet_ResolveHost(&serverIP, NULL, serverPort);
-    std::cout << "Server IP: " << IPConverter::IPToString(serverIP.host) << ":" << serverPort << std::endl;
+    std::cout << "Server IP: " << Utility::IPToString(serverIP.host) << ":" << serverPort << std::endl;
     serverSocket = SDLNet_TCP_Open(&serverIP);
     if (serverSocket == NULL)
     {
@@ -84,7 +84,7 @@ void CommandServer::AcceptConnection(TCPsocket serverSocket)
             exit(1);
         }
         else
-            std::cout << "Got connection from: " << IPConverter::IPToString(remote->host) << std::endl;
+            std::cout << "Got connection from: " << Utility::IPToString(remote->host) << std::endl;
     }
 }
 
