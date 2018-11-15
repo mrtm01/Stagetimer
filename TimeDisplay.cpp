@@ -32,8 +32,6 @@ int TimeDisplay::Init()
         fprintf(stderr, "Couldn't load font: %s\n",
                 SDL_GetError());
     }
-
-    ClearScreen();
     return 0;
 }
 
