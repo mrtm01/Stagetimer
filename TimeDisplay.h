@@ -29,8 +29,8 @@ class TimeDisplay
 
     TTF_Font *font;
     const int fontSize = 400;
-    SDL_Color fgColor = {0xFF, 0xFF, 0xFF, 0};
-    SDL_Color bgColor = {255, 0, 0, SDL_ALPHA_OPAQUE};
+    SDL_Color fgColor = {0xFF, 0xFF, 0xFF, SDL_ALPHA_OPAQUE};
+    SDL_Color bgColor = {0, 0, 0, SDL_ALPHA_OPAQUE};
     SDL_Texture *getTTFTextureFromInt(int number);
     SDL_Rect currentTimeRect;
 };
