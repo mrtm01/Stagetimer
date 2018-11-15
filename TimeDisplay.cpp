@@ -24,8 +24,7 @@ int TimeDisplay::Init()
 
     window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, 0);
     renderer = SDL_CreateRenderer(window, -1, 0);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-    SDL_RenderClear(renderer);
+
     font = TTF_OpenFont("font.ttf", fontSize);
     if (font == NULL)
     {
@@ -33,6 +32,7 @@ int TimeDisplay::Init()
                 SDL_GetError());
     }
 
+    ClearScreen();
     return 0;
 }
 
@@ -54,9 +54,8 @@ void TimeDisplay::RenderString(std::string string)
 
 void TimeDisplay::ClearScreen()
 {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-    SDL_RenderClear(renderer);
-    
+    SDL_SetRenderDrawColor(renderer, bgColor.r, bgColor.g, bgColor.b, bgColor.a);
+    SDL_RenderClear(renderer);   
 }
 void TimeDisplay::Render()
 {
@@ -82,14 +81,14 @@ SDL_Window *TimeDisplay::GetWindow()
     return window;
 }
 
-/*TODO: skapa en struct eller calls med Texture, width, height, x, y. Typ "RenderElement" eller så. */
+/*TODO: skapa en struct eller class med Texture, width, height, x, y. Typ "RenderElement" eller så. */
 
 SDL_Texture *TimeDisplay::getTTFTextureFromInt(int number)
 {
     std::string message = SecondsToString(number);
     SDL_Surface *text;
 
-    text = TTF_RenderUTF8_Solid(font, message.c_str(), white); //Draw string to surface
+    text = TTF_RenderUTF8_Solid(font, message.c_str(), fgColor); //Draw string to surface
     if (text == NULL)
     {
         fprintf(stderr, "Couldn't render text: %s\n", SDL_GetError());
